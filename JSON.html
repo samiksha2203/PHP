@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Creating JSON</title>
+</head>
+<body>
+    <script type="text/javascript">
+        
+        var data = {
+            "name": "Samiksha",
+            "age": 20,
+            "dept": "IT"
+        };
+
+        document.writeln(JSON.stringify(data) + "<br/>");
+        document.writeln(JSON.stringify(data) + "<br/>");
+        document.writeln(JSON.stringify(data, ["name", "age", "dept"]) + "<br/>");
+    </script>
+</body>
+</html>
+
+#2.parsing JSON
+<!DOCTYPE html>
+<html>
+<body>
+    <script type="text/javascript">
+        
+        var data = '{"name":"Samiksha", "age":20, "dept":"IT"}';
+
+        // Example A: Basic parsing and accessing a property
+        var jsonObj = JSON.parse(data);
+        document.writeln("<h3>Example A: Basic Parsing</h3>");
+        document.writeln("Name: " + jsonObj.name + "<br/>");
+        
+      
+        for (var key in jsonObj) {
+            document.writeln("<br/>" + key + ": " + jsonObj[key]);
+        }
+        document.writeln("<hr>");
+        document.writeln("<h3>Example B: Parsing with Reviver (Modifying/Filtering)</h3>");
+        var jsonRevivedObj = JSON.parse(data, function(name, value) {
+            
+            if (name === "name") { 
+                return undefined;
+            } 
+            
+            else {
+                return value;
+            }
+        });
+
+     
+        for (var key in jsonRevivedObj) {
+            document.writeln("<br/>" + key + ": " + jsonRevivedObj[key]);
+        }
+    </script>
+</body>
+</html>
